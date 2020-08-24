@@ -45,33 +45,65 @@ function runEnter() {
   var shapeInputValue = shapeInputElement.property("value");
 
 
-  function ufoFilter(ufo){
-    if (dateInputValue!== false || dateInputValue !== null || dateInputValue !== 0 || dateInputValue !== ""){
-      
-   return ufo.datetime === dateInputValue }
 
-          /*
-           ufo.state==stateInputValue &&
-           ufo.country==countryInputValue &&
-           ufo.shape==shapeInputValue*/
-  }
-
-  function cityFilter(ufo){
-    if (cityInputValue!== false || cityInputValue !== null || cityInputValue !== 0 || cityInputValue !== ""){
-      return ufo.city === cityInputValue
-    }
-
-  }
+         
   
+   
+    
 
+   
+    
+    // check if there an input
+    function testFilter(){
+      myBolean ={}
+      if (dateInputValue){
+       myBolean['date'] = dateInputValue}
 
- 
+      if(cityInputValue){
+       myBolean['city'] = cityInputValue}
 
-  var filteredData = tableData.filter(ufoFilter).filter(cityFilter);
+       if (stateInputValue){
+       myBolean['state'] = stateInputValue}
 
-  console.log(filteredData);
- 
-addingRows(filteredData)
+       if (countryInputValue){
+       myBolean['country'] = countryInputValue}
+
+       if(shapeInputValue){
+       myBolean['shape'] = shapeInputValue}
+       console.log(myBolean)
+       return myBolean
+
+    
+       }
+
+    //filter the acutal data
+    function tableFilter(tableList){
+      mydicts = testFilter()
+
+console.log(mydicts)
+      if(mydicts.date){
+      var filteredData = tableList.filter(ufo=> ufo.datetime==mydicts.date);}
+      if(mydicts.city){
+        var filteredData = tableList.filter(ufo=> ufo.city==mydicts.city.toLowerCase());}
+
+      if(mydicts.state){
+          var filteredData = tableList.filter(ufo=> ufo.state==mydicts.state.toLowerCase());}
+        
+      if(mydicts.country){
+            var filteredData = tableList.filter(ufo=> ufo.country==mydicts.country.toLowerCase());}
+
+      if(mydicts.shape){
+        var filteredData = tableList.filter(ufo=> ufo.shape==mydicts.shape.toLowerCase());}
+     
+
+console.log(filteredData)
+
+    return filteredData
+    }
+        
+
+    addingRows(tableFilter(tableData))
+
 }
 
 
