@@ -81,19 +81,48 @@ function runEnter() {
       mydicts = testFilter()
 
 console.log(mydicts)
-      if(mydicts.date){
-      var filteredData = tableList.filter(ufo=> ufo.datetime==mydicts.date);}
+      if(mydicts.date){ if ( filteredData){
+
+      var filteredData = filteredData.filter(ufo=> ufo.datetime==mydicts.date)}
+
+      else{var filteredData = tableList.filter(ufo=> ufo.datetime==mydicts.date)
+
+      }
+
+
+     }
       if(mydicts.city){
-        var filteredData = tableList.filter(ufo=> ufo.city==mydicts.city.toLowerCase());}
+         if ( filteredData){
 
-      if(mydicts.state){
-          var filteredData = tableList.filter(ufo=> ufo.state==mydicts.state.toLowerCase());}
+          var filteredData = filteredData.filter(ufo=> ufo.city==mydicts.city)}
+    
+          else{var filteredData = tableList.filter(ufo=> ufo.city==mydicts.city)
+    
+          }}
+
+      if(mydicts.state){if ( filteredData){
+
+        var filteredData = filteredData.filter(ufo=> ufo.state==mydicts.state)}
+  
+        else{var filteredData = tableList.filter(ufo=> ufo.state==mydicts.state)
+  
+        }}
         
-      if(mydicts.country){
-            var filteredData = tableList.filter(ufo=> ufo.country==mydicts.country.toLowerCase());}
+      if(mydicts.country){if ( filteredData){
 
-      if(mydicts.shape){
-        var filteredData = tableList.filter(ufo=> ufo.shape==mydicts.shape.toLowerCase());}
+        var filteredData = filteredData.filter(ufo=> ufo.country==mydicts.country)}
+  
+        else{var filteredData = tableList.filter(ufo=> ufo.country==mydicts.country)
+  
+        }}
+
+      if(mydicts.shape){if (filteredData){
+
+        var filteredData = filteredData.filter(ufo=> ufo.shape==mydicts.shape)}
+  
+        else{var filteredData = tableList.filter(ufo=> ufo.shape==mydicts.shape)
+  
+        }}
      
 
 console.log(filteredData)
